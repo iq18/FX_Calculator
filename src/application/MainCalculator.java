@@ -31,10 +31,6 @@ public class MainCalculator extends Application {
 	private int result;
 	private Button operation;
 	private String numsAsString;
-	private TextField tf2;
-	
-	
-	
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -56,14 +52,7 @@ public class MainCalculator extends Application {
 			tf.setLayoutY(0);
 			BorderPane.setMargin(tf, new Insets(0, 0, 5, 0));
 			tf.getStyleClass().add("text-fields");
-
-			tf2 = new TextField();
-			tf2.setMinSize(450, 70);
-			tf2.setLayoutX(0);
-			tf2.setLayoutY(0);
-			BorderPane.setMargin(tf2, new Insets(0, 0, 5, 0));
-			tf2.getStyleClass().add("text-fields");
-
+			
 			// number Buttons
 			Button b0 = new Button();
 			buttons.add(b0);
@@ -104,11 +93,7 @@ public class MainCalculator extends Application {
 					// output
 					numsAsString = "" + numbersAsString;
 					numsAsString = numsAsString.replaceAll("\\W", "");
-					if (root.getTop() == tf) {
-						tf.setText(numsAsString);
-					} else if (root.getTop() == tf2) {
-						tf2.setText(numsAsString);
-					}
+					tf.setText(numsAsString);
 				});
 			}
 
@@ -148,8 +133,6 @@ public class MainCalculator extends Application {
 					one = mathLogic.getNumber(numbersAsString);
 					// clear List
 					numbersAsString.clear();
-					// replace text field
-					root.setTop(tf2);
 					// store operation Button to pass to calculate method
 					operation = b;
 
@@ -162,9 +145,9 @@ public class MainCalculator extends Application {
 			calculate.setOnAction(e -> {
 				two = mathLogic.getNumber(numbersAsString);
 				numbersAsString.clear();
-				tf2.clear();
+				tf.clear();
 				result = mathLogic.calculate(operation, one, two);
-				tf2.setText(String.valueOf(result));
+				tf.setText(String.valueOf(result));
 				reset();
 
 			});
