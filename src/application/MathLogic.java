@@ -12,74 +12,48 @@ import javafx.scene.control.Button;
 
 public class MathLogic {
 	
-	private int numberOne;
-	private String numberOneAsString;
-	private int numberTwo;
-	private String numberTwoAsString;
+	private int number;
+	private String numberAsString;
 	private final String add = "\u002B";
 	private final String subtract = "\u2212";
 	private final String multiply = "\u00D7";
 	private final String divide = "\u00F7";
+	private StringBuilder sb;
 	
 	public MathLogic() {
-		numberOneAsString="";
-		numberTwoAsString="";
-		numberOne =0;
-		numberTwo =0;
+		numberAsString = "";
+		number =0;
+	}
+	
+	/**
+	 * Method to retrieve number from GUI
+	 * @param nums ArrayList of number as String
+	 * @return integer value of text entry
+	 */
+	public int getNumber(ArrayList<String> nums) {
+		numberAsString = "";
+		sb = new StringBuilder();
+		//ensure ArrayList not empty
+		if (nums.isEmpty()) {
+			System.out.println("Empty number field");
+		} else {
+			//create String from ArrayList
+			for (String s : nums) {
+				sb.append(s);
+				numberAsString = sb.toString();
+			}
+		}
+		//add Integer value of String to return variable
+		try {
+			number = Integer.valueOf(numberAsString);
+		} catch (NumberFormatException e) {
+			System.out.println("Not a valid number");
+			e.printStackTrace();
+		}
 		
+		return number;
 	}
 	
-	/**
-	 * Method to retrieve number from GUI
-	 * @param nums ArrayList of number as String
-	 * @return integer value of text entry
-	 */
-	public int getFirstNumber(ArrayList<String> nums) {
-		//ensure ArrayList not empty
-		if (nums.isEmpty()) {
-			System.out.println("Empty number field");
-		} else {
-			//create String from ArrayList
-			for (String s : nums) {
-				numberOneAsString += s;
-			}
-		}
-		//add Integer value of String to return variable
-		try {
-			numberOne = Integer.valueOf(numberOneAsString);
-		} catch (NumberFormatException e) {
-			System.out.println("Not a valid number");
-			e.printStackTrace();
-		}
-
-		return numberOne;
-	}
-	
-	/**
-	 * Method to retrieve number from GUI
-	 * @param nums ArrayList of number as String
-	 * @return integer value of text entry
-	 */
-	public int getSecondNumber(ArrayList<String> nums) {
-		//ensure ArrayList not empty
-		if (nums.isEmpty()) {
-			System.out.println("Empty number field");
-		} else {
-			//create String from ArrayList
-			for (String s : nums) {
-				numberTwoAsString += s;
-			}
-		}
-		//add Integer value of String to return variable
-		try {
-			numberTwo = Integer.valueOf(numberTwoAsString);
-		} catch (NumberFormatException e) {
-			System.out.println("Not a valid number");
-			e.printStackTrace();
-		}
-
-		return numberTwo;
-	}
 	
 	/**
 	 * Method to perform calculations

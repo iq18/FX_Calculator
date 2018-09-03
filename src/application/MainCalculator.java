@@ -145,7 +145,7 @@ public class MainCalculator extends Application {
 					// clear first number from text field
 					tf.clear();
 					// pass first number to Logic method
-					one = mathLogic.getFirstNumber(numbersAsString);
+					one = mathLogic.getNumber(numbersAsString);
 					// clear List
 					numbersAsString.clear();
 					// replace text field
@@ -160,7 +160,7 @@ public class MainCalculator extends Application {
 
 			// get second number and pass numbers and operation to calculate
 			calculate.setOnAction(e -> {
-				two = mathLogic.getSecondNumber(numbersAsString);
+				two = mathLogic.getNumber(numbersAsString);
 				numbersAsString.clear();
 				tf2.clear();
 				result = mathLogic.calculate(operation, one, two);
